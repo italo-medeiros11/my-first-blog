@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+    <head>
+        <title>Certificados</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/Certificado.css' %}">
+        <link link rel="stylesheet" href="{% static 'css/Certificado.css' %}" type="text/css" media="print" />
+    </head>
+    <body>
+        <div class="book">
+
+            <div class= "page">
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+    
+            <form id='form2' method='get' class='noprint'>
+                <fieldset class="col-md-12">
+                    <button type="button" class="btn btn-success btn-lg btn-block" onclick= "window.print()">Imprimir</button>
+                    <br class='noprint'>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick= "get()">Voltar</button>
+                    <br class='noprint'>
+                </fieldset>
+            </form>
+
+        </div>
+
+        
+        <script>
+        
+            function get() {
+
+                document.getElementById('form2').action = '/'
+
+                return ''
+
+            }
+
+        </script>
+    </body>
+</html>

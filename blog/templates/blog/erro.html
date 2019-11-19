@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    
+    <h1 style = "color:red">Aviso!</h1>
+    <h3 style = "color:red"> Portador do CPF: <b>{{ cpfParticipante }}</b> não participou do evento ou registrou-se com um CPF inválido!</h3>
+
+            <form id='form2' method='get'>
+                <fieldset>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick= "get()">Voltar</button>
+                </fieldset>
+            </form>
+
+        <script>
+
+            function get() {
+
+                document.getElementById('form2').action = '/'
+
+                return ''
+
+            }
+
+        </script>
+{% endblock %}

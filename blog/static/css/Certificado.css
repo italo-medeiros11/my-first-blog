@@ -1,0 +1,73 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #e2e2e2a6;
+    font: 12pt "Tahoma";
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.page {
+    position: relative;
+    width: 297mm;
+    min-height:10mm;
+    margin: 50px auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+}
+
+#imagemcertif{
+    position: relative;
+    width: 297mm;
+    height:209.8mm;
+    margin: 0px;
+}
+
+.texto_certificado{
+    text-indent: 50px;
+    position: absolute;
+    top: 90mm;
+    left: 31mm;
+    width: 242mm;
+    font-size: 27px;
+    text-align: justify;
+    color: #3f3f3f;
+}
+
+
+
+
+
+@page {
+    size: A4 landscape;
+    margin: 0;
+}
+
+
+@media print {
+
+    html, body, .book, .page, .content{
+        width: 297mm;
+        height: 180mm; 
+        margin: 0mm;
+        padding: 0mm;
+        border: 0mm;
+        border-radius: 0mm;
+        box-shadow: 0mm;     
+    }
+
+    .page {
+
+        background: none;
+    }
+
+    .noprint{
+        display: none;
+    }
+
+}

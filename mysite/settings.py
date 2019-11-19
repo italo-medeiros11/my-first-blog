@@ -130,3 +130,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 django_heroku.settings(locals())
+
+
+# My variables
+
+MYVAR = ""

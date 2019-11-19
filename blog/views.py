@@ -4,38 +4,189 @@ from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
+import django.conf.global_settings
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+def gerar(request):
 
-def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+    return render(request, 'blog/gerar.html')
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
-    else:
-        form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def certificado(request,cpf):
+    
+    participantes = {
+            '95955178368':'Martinair Santana Da Silva',
+            '02405653397':'Genyvana Criscya Garcia Carvalho',
+            '07208626310':'Francisco Helton Da Silva',
+            '07320335352':'Isadora Lima Silva',
+            '03744486397':'Savanna De Brito Ximenes Aragão',
+            '02690453339':'Luis Antonio Rodrigues Galvão Barroso',
+            '02083150392':'Renata Maria Assunção De Carvalho Sousa',
+            '08426850308':'Giovanna Lima Alves',
+            '06679558360':'Fabiana Leite Sales',
+            '06014819339':'Susana Silva Lima',
+            '06088073381':'Camila Jussara Pereira',
+            '03562362340':'Sabrina Paula De Sousa Bezerra Cruz',
+            '99683130330':'Ronymayre Andrade Brito',
+            '06296879350':'Carlota Áurea Brito Sousa',
+            '07426392317':'Taline Araujo Silva',
+            '83952705349':'Márcia Lílian Lima Araujo',
+            '04360162308':'Antônia Karoline Dos Santos De',
+            '04350754385':'Liara Rosa De Medeiros Silva',
+            '06564985363':'Ana Clara Carvalho Oliveira',
+            '01593488386':'Anna Nathércia De Melo Queiroz Maia',
+            '05819447395':'Paulo Sergio Rodrigues Sousa',
+            '03260635360':'Káren Andresa Mendes Da Silva',
+            '06224943338':'Larissa Do Nascimento Oliveira',
+            '03144612308':'Anny Karine Gomes Pacifico',
+            '07041461343':'Sávia Adelaide Das Neves Santos',
+            '06759989309':'Isac Pereira Araujo',
+            '06955639390':'Getulivan Alcântara De Melo',
+            '04696762300':'Maria Clara Souza Oliveira',
+            '05568012377':'Carla Michele Silva Ferreira',
+            '17481954703':'Hiana De Lima Melo',
+            '06888680371':'Cinthia Cristina Soares Dos Santos',
+            '29426151842':'Francisca Da Silva Alcântara',
+            '04302573333':'Lady Mariana Sá De Lima',
+            '05068494305':'Amanda Raquel Monteiro Da Cruz',
+            '03952483370':'Luciana Macedo Dos Santos',
+            '00750823305':'Maria Salete Garcia Silva',
+            '03686240300':'Lucas Da Costa Florindo',
+            '06660377360':'Maria Das Graças Barroso Da Rocha',
+            '05497532306':'Lilian Da Silva Pereira',
+            '06531022329':'Anna Larissa Nascimento Silva',
+            '04088179331':'Micaele Viana Souza',
+            '05551389332':'Gilmara Sousa Dantas',
+            '02411659385':'Deusimiro De Melo Santos Machado',
+            '06514329365':'Sarah Laressa Mourão Viana',
+            '01906113327':'Ivone Da Costa Alves',
+            '02070617343':'Mirella Thaís Araújo Santos',
+            '02023577322':'Andréia Ilana Matos Sousa',
+            '06809438386':'Francisco Izanne Pereira Santos',
+            '06877305388':'Ivirlene Pinheiro Dos Santos',
+            '61245028367':'Marília Do Nascimento Oliveira',
+            '05429542300':'George Marcos Dias Bezerra',
+            '01976013321':'Alélia De Sousa Tibúrcio',
+            '05214176350':'Nathália Maria Fortes Soares',
+            '05534460377':'Thalêssa Carvalho Da Silva',
+            '05343378307':'Joyciane Soares Araújo Mendes',
+            '06293829301':'Julianny',
+            '04480014381':'Violmar Cardoso Do Livramento',
+            '61245030345':'Marisa Do Nascimento Oliveira',
+            '7582241339':'Emanuelly Emyly Da Costa',
+            '05557428305':'Bruna Gabriela Silva Rodrigues',
+            '06877342313':'Ivirlane Pinheiro Dos Santos',
+            '07912460357':'Sandrielle De Carvalho Duarte Souza',
+            '07508012399':'Anna Gabriely Costa',
+            '04134050367':'Ana Paula Melo Oliveira',
+            '08039696356':'Kayco Damasceno Pereira',
+            '07388359354':'Karoline Maria Mendes Amaral',
+            '06983101367':'Mariana Silva Souza',
+            '05528859328':'Gabrielly Silva Ramos',
+            '05682202341':'Marcelo Da Silva',
+            '05513761394':'Maria Letícia Carvalho Candido',
+            '05823533357':'Uanderson Oliveira Dos Santos',
+            '99230127353':'Maria Enivalda Nascimento Porto',
+            '07504129330':'Tiago Medeiros Melo',
+            '06521608320':'Priscila Dãmares Pereira Silva',
+            '06585602390':'Maria Caroline Do Livramento Cavalcante',
+            '83451021315':'Ana Célia De Sousa Viana',
+            '05232810308':'Ana Paula Oliveira Nascimento',
+            '04283772380':'Yara Pereira Lopes',
+            '06596299333':'Rafaela Vieira De Sousa',
+            '04951909340':'Maria Luana Cardozo Luiz',
+            '07357890376':'Kelly Ferreira Silva',
+            '06698560375':'Vânia Soares Pereira',
+            '06675197347':'Walkiria Lourdes Alves De Moraes',
+            '06320499362':'Antonia Jéssica Da Silva',
+            '01589977351':'Luiza Antonia Vieira De Brito',
+            '05480040308':'Flávia Vanessa De Castro Cruz',
+            '04959837306':'Ana Larissa Castro Silva',
+            '05682204395':'Sarah Ramille Melo Campos',
+            '06350830350':'Ronalde Da Silva Leite',
+            '04219209395':'Tatila Sara Pereira Cardoso',
+            '06046286336':'Acácio Costa Silva',
+            '87812789349':'Gislaine Ravel Dos Reis Santos',
+            '01398802328':'Milane Ricele Rocha De Sousa',
+            '75231050334':'Apolinário Da Cunha',
+            '06634337381':'Edimilson Gomes Ribeiro Júnior',
+            '75097249372':'Érico Cavalcante Oliveira',
+            '02902413327':'Bruno Nascimento Sales',
+            '07254187370':'Ana Roza Carvalho Silva',
+            '02471151345':'Roziane Dos Santos Moreira',
+            '06574071356':'Laysa Cristine Medeiros De Carvalho',
+            '02230180312':'Elisson Da Cruz Souza',
+            '06565712336':'Maria Luisa Pereira Lima',
+            '04969002347':'Francisca Das Chagas Pereira Farias',
+            '04025371308':'Lenna Laysa Morais Mello E Andrade',
+            '04025371308':'Lenna Laysa Morais Mello E Andrade',
+            '60024710300':'Janária Meneses Pereira',
+            '07309900367':'Jozeyana De Sousa Carvalho',
+            '01989381367':'Ana Maria De Sousa Oliveira',
+            '19529582889':'Regina Celly Pereira Da Silva',
+            '64893057391':'Gihane Canuto Oliveira',
+            '43180088869':'Mikaelle Silva Albuquerque Rodrigues',
+            '00886814324':'Gerusa Cássia Santos Oliveira',
+            '07334538307':'Cleidimayra Gomes Rodrigues',
+            '07390116340':'Larícia Sousa Cavalcante',
+            '06587210384':'Ranielson Douglas Oliveira Silva',
+            '04630924302':'Eliseu De Meneses Araújo',
+            '04640019351':'Natanaelle Nobre Amorim',
+            '01776635370':'Anne Alynne Rodrigues E Escórcio',
+            '40095396829':'Luísa Mariele Dos Santos Oliveira',
+            '00806806311':'Julio César Soares De Souza',
+            '45431922300':'Simone Maria Tertuliano',
+            '06453560348':'Nair Do Nascimento Correia',
+            '65568915334':'Fernanda Kaline Nogueira Dos Santos',
+            '05855927300':'Francisco Lucas Alves De Andrade',
+            '05012539397':'Aurélio Silva Gonçalves',
+            '05996064367':'Jeniffer Rodrigues Oliveira',
+            '04079322321':'Natalia Maria Gomes De Carvalho',
+            '06760225376':'Mara Beatriz De Carvalho Ferreira',
+            '05721912359':'Tatila Maria Cruz Da Silva',
+            '06455722337':'Amanda Gabriela De Lima Dias',
+            '07596870309':'Isac Leite Sousa',
+            '06253325396':'Iani Clara Oliveira Do Nascimento',
+            '02582668303':'Maria Dos Remedios Gomes',
+            '00620126302':'Maria Eva Pereira',
+            '33927405353':'Ana Lúcia Nair Dos Santos',
+            '44282606878':'Ana Caroline Dos Santos Araújo',
+            '06544739359':'Maria Dos Remédios De Souza Ferreira',
+            '66542600310':'Vanusa De Araújo Marcolino Lima',
+            '05897565325':'Gislane Dos Santos Nascimento Tiburcio',
+            '07019340342':'Kátia Christina Andrade Ferreira',
+            '07429447350':'Ana Karine Leite Cardoso',
+            '88461696387':'Jaira Mendes Costa Da Silva Jucá',
+            '07126979347':'Grasyele Oliveira Sousa',
+            '01755971389':'Marcos Marciel Lima Rodrigues',
+            '66104440304':'Grauben Porto Souza Soares',
+            '01876616342':'Auriane Carvalho Brandão Dos Santos',
+            '30604575300':'Heloisa Maria Ferreira De Sousa',
+            '61213337313':'Izamara De Almeida Carvalho',
+            '60911562338':'Maria Do Carmo De Mesquita Lima',
+            '04672494314':'Gláucia Maria Macêdo Marciano',
+            '62867695368':'Brunna Minelvina Galvão Martins',
+            '07355989324':'Jackeline De Sousa Laurentino',
+            '06124233363':'Joyce Maria Machado Dos Santos',
+            '05837849335':'Marcos Roberto Nascimento Sousa',
+            '61111534390':'Ana Tifanny Caroline Silva Ciriaco',
+            '06519262382':'Vanessa Rayanne De Souza Ferreira',
+            
+            '04936216364':'Ítalo Rocha Medeiros'
+            }
+
+    nomePaticipante = ''
+
+    try:
+        nomePaticipante = participantes[cpf]
+        cpfParticipante = cpf[:3] + "." + cpf[3:6] + "." + cpf[6:9] + "-" + cpf[9:]
+        return render(request, 'blog/certificado.html',{'nomePaticipante':nomePaticipante, 'cpfParticipante':cpfParticipante})
+
+    except:
+        cpfParticipante = cpf
+        return render(request, 'blog/erro.html',{'cpfParticipante':cpfParticipante})
+    
+    
+ 
+    

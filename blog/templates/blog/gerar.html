@@ -1,0 +1,37 @@
+   
+   
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+        <div class="well">
+            <h1 class="ls-login-logo">II Fórum de Saúde Mental</h1>
+            <h4 class="ls-login-logo">Trabalho Contemporâneo e a Saúde Mental do Trabalhador</h4>
+            <br>
+            <br>
+            <form id='form' method='get'>
+                <fieldset>
+                    <p >1º Digite os 11 digitos do seu CPF sem os caracteres especiais.</p>
+                    <p >2º Clique em Gerar Certificado.</p>
+                    <br>
+                    <div class="form-group lg-login-user">
+                        
+                        <label for="userLogin">Cadastro de Pessoa Física (CPF):</label>
+                        <input class="form-control ls-login-bg-user input-lg" id="CPF" type="text" aria-label="Usuário" placeholder="Digite Seu CPF">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick= "getcertificate()">Gerar Certificado</button>
+                </fieldset>
+            </form>
+        </div>
+        <script>
+
+            function getcertificate() {
+
+                document.getElementById('form').action = 'certificado/' + document.getElementById('CPF').value + '/'
+
+                return ''
+
+            }
+
+        </script>
+{% endblock %}
