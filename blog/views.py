@@ -173,7 +173,9 @@ def certificado(request,cpf):
             '61111534390':'Ana Tifanny Caroline Silva Ciriaco',
             '06519262382':'Vanessa Rayanne De Souza Ferreira',
             
-            '04936216364':'Ítalo Rocha Medeiros'
+            '04936216364':'Ítalo Rocha Medeiros',
+            '01339492300':'Emanuelle Nascimento Lima',
+            '01878641360':'Pauliana Viana Morais'
             }
 
     nomePaticipante = ''
